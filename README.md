@@ -29,38 +29,38 @@
 ## Distribucion de carpetas
 
     tvlibre/
-    ---- apps/
-    -------- comments/
-    -------- favorite/
-    -------- notification/
-    -------- program/
-    -------- user/
-    -------- userProfile/
-    ---- tvlibre/
-    -------- media/
-    -------- static/
-    ------------ bower_components/
-    ------------ css/
-    ------------ js/
-    ------------ templates-utils
-    ------------ tvapp/
-    ---------------- canal/
-    ---------------- comment/
-    ---------------- favorite/
-    ---------------- layout/
-    ---------------- notification/
-    ---------------- program/
-    ---------------- user/
-    ---------------- util/
-    ---------------- app.config.js
-    ---------------- app.js
-    ---------------- app.routes.js
-    -------- templates/
-    ------------ account/
-    ------------ notification/
-    ------------ user/
-    ------------ base.html
-    ------------ dashboard.html
+    ---- apps/                  # Aplicaciones propias en django
+    -------- comments/          # Aplicacion de commentarios (crea api para paquete de tercero 'django_comments_xtd')
+    -------- favorite/          # Aplicacion de favoritos (asocia a un usuario y un objeto generico)
+    -------- notification/      # Aplicacion para generar notificaciones
+    -------- program/           # Aplicacion para administrar videos por programas, episodios y categorias
+    -------- user/              # Aplicacion para reescribir alguna logicas para el sistema de authenticacion
+    -------- userProfile/       # Aplicacion que genera perfiles de usuario
+    ---- tvlibre/               # Projecto
+    -------- media/             # Archivos media
+    -------- static/            # Archivos Estaticos
+    ------------ bower_components/  # Contiene paquetes instalado con bower (paquetes/librerias javascript de terceros)
+    ------------ css/               # Contiene hojas de estilo propia
+    ------------ js/                # Contiene Script de javascript propios
+    ------------ templates-utils    # Contiene template utiles
+    ------------ tvapp/             # Contiene aplicacion de angular
+    ---------------- canal/         # Modulo para manejar "canales"
+    ---------------- comment/       # Modulo de comentarios
+    ---------------- favorite/      # Modulo de favoritos
+    ---------------- layout/        # Modulo donde se definen diferentes partes del layout (como el sidebar)
+    ---------------- notification/  # Modulo de notificacion
+    ---------------- program/       # Modulo para manejar programas y episodios
+    ---------------- user/          # Modulo de usuario
+    ---------------- util/          # Modulo donde contiene directivas, controladores y template utils que se usan en diferentes lugares de la aplicacion
+    ---------------- app.config.js  # Configuracion de la aplicacion
+    ---------------- app.js         # Define la aplicacion
+    ---------------- app.routes.js  # Define las rutas de la aplicacion
+    -------- templates/             # Contiene los template que procesa django
+    ------------ account/           # Reescribiendo template del paquete "allauth"
+    ------------ notification/      # Template de la aplicacion de notificacion
+    ------------ user/              # Template de la aplicacion de usuarios
+    ------------ base.html          # Template base
+    ------------ dashboard.html     # Template que levanta la aplicacion de angular
     ------------ index.html
 
 
