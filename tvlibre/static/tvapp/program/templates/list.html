@@ -1,0 +1,88 @@
+<div class="col-md-6 max-height" id="program-list-container">
+    <h3 class="text-center" style="color: #474747; font-weight: bold;">LISTA DE PROGRAMAS</h3>
+    <div id="custom-search-input">
+        <div class="input-group col-md-12">
+            <input ng-model="vm.search_q" type="text" class="form-control input-lg" placeholder="Buscar" />
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div id="program-list" when-scroll-ends="vm.loadMore()">
+        <a class="item-program"
+           href="#{{ program.slug }}"
+           ng-repeat="program in vm.programs|filter:vm.search_q"
+           ng-click="vm.selectProgram(program)"
+           ng-class="{selected: program.selected }">
+            <div class="col-md-3">
+                <img class="img-responsive" ng-src="{{ ::program.thumbnail_300x300 }}" alt="{{ ::program.title }}">
+                <span style="position: absolute; bottom: 0px; right: 0px; background-color: #0077aa; color: #ffffff; padding: 3px;">{{ ::program.category.name }}</span>
+
+            </div>
+            <div class="col-md-9" >
+                <h4 class="title-program">{{ ::program.title }}</h4>
+                <em>{{ ::program.description|limitTo:150 }}...</em>
+                <button type="button" class="btn-favorite"
+                        ng-click="vm.toggleFavorite(program)">
+                    <i class="fa fa-2x " ng-class="{'fa-heart': program.is_favorite, 'fa-heart-o': !program.is_favorite}"></i>
+                </button>
+
+            </div>
+
+        </a>
+    </div>
+
+</div>
+<div class="col-md-6 max-height qpadding" >
+    <!--<div class="embed-responsive embed-responsive-4by3">
+        <iframe type="text/html" class="embed-responsive-item" allowfullscreen src="http://www.youtube.com/watch?v=FItJ4dW_PPI"></iframe>
+    </div>-->
+    <div ng-if="vm.program.title" class="max-height" style="display: table;" ng-init="header_collapsed=false;">
+        <div class="col-md-12" id="program-detail-header" ng-class="{'collapsed': header_collapsed }">
+            <div class="image-detail" style="max-height: 90%; margin-top: 2%; padding: 0px; padding-right: 15px;">
+                <img class="img-responsive" style="" ng-src="{{ vm.program.thumbnail_300x300 }}" alt="{{ vm.program.title }}">
+            </div>
+            <div class="content-detail" style="padding: 0px; margin-top: 2%; max-height: 90%;">
+                <h4 class="title-program">{{ vm.program.title }}</h4>
+                <em><strong>Cantidad de capitulos</strong> {{ vm.program.episodes.length }}</em>
+                <div id="program-detail-header-description">{{ vm.program.description }}</div>
+            </div>
+            <div style="position: absolute; bottom: 5px; right: 5px; color: #AEAC98;" ng-click="header_collapsed = !header_collapsed;"><i class="fa fa-2x" ng-class="{'fa-toggle-down': header_collapsed, 'fa-toggle-up': !header_collapsed}"></i></div>
+        </div>
+        <div class="col-md-12" id="program-detail-list-episodes" ng-class="{'collapsed': header_collapsed }">
+            <h3 class="text-center">Lista de episodios</h3>
+            <!--<div class="embed-responsive embed-responsive-4by3">
+                <iframe type="text/html" class="embed-responsive-item" src="https://www.youtube.com/embed/5VHTDg--jkA"t  frameborder="0" allowfullscreen></iframe>
+            </div>-->
+            <div class="episode-list" ng-if="vm.episodes.length != 0">
+                <div class="item-episode" ng-click="vm.openEpisode(episode)" ng-repeat="episode in vm.episodes">
+                    <div class="col-md-3">
+                        <img class="img-responsive" ng-src="{{ episode.thumbnail_300x300 }}" alt="{{ episode.title }}">
+                    </div>
+                    <div class="col-md-9">
+                        <h4>{{ episode.title }}</h4>
+                        <em>{{ episode.pub_date }}</em>
+                        <p>{{ episode.short_description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-if="vm.episodes.length == 0">
+                <p>No hay ningun episodio del programa <strong>{{ vm.program.title }}</strong></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(function(){
+        $('#program-list').slimScroll({
+            height: '88%'
+        });
+        //$('#program-detail-header-description').slimScroll({
+        //    height: '100%'
+        //});
+    });
+</script>

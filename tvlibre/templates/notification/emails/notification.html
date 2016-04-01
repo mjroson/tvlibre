@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notification</title>
+</head>
+<body>
+    <h3>Hola {{ notification.user.username }}!</h3>
+    <p>Alerta de notificacion, se ha generado una notificacion de {{ notification.content_type }}</p>
+    <p>Puedes acceder a ella haciendo click <a href="{{ notification.get_url }}">Aquí!</a></p>
+
+    <em>En caso de no querer recibir mas notificaciones acceda al panel de usuario y configure las notificaciones a su gusto</em>
+</body>
+</html>

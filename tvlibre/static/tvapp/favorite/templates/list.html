@@ -1,0 +1,45 @@
+<style>
+    .btn-remove-favorite{
+        position: absolute;
+        right: 25px;
+    }
+</style>
+<div class="col-md-10 col-md-offset-1 max-height">
+    <h2 class="text-center" style="color: #5F5AA5; font-weight: bold;">Lista de todos los favoritos</h2>
+    <div id="custom-search-input">
+        <div class="input-group col-md-12">
+            <input ng-model="vm.search_q" type="text" class="form-control" placeholder="Buscar" />
+            <span class="input-group-btn">
+                <button class="btn btn-info" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div id="program-list" ng-show="vm.favorites.length > 0" style="position: relative">
+        <a class="item-program"
+           href="#{{ favorite.obj.slug }}"
+           ng-repeat="favorite in vm.favorites|filter:vm.search_q">
+            <div class="col-md-3">
+                <img class="img-responsive" ng-src="{{ ::favorite.obj.thumbnail_300x300 }}" alt="{{ ::favorite.obj.title }}">
+            </div>
+            <div class="col-md-9">
+                <h4 class="title-program">{{ ::favorite.obj.title }}</h4>
+                <em>{{ ::favorite.obj.description }}</em>
+                <em><strong>Cantidad de capitulos</strong> {{ ::favorite.obj.episodes.length }}</em>
+            </div>
+            <button class="btn btn-sm btn-icon text-danger btn-remove-favorite" ng-click="vm.remove_favorite(favorite)">
+                <span class="fa fa-times" tooltip="'Quita el aviso de mis favoritos'" placement="top"></span>
+            </button>
+        </a>
+    </div>
+    <div class="content-data col-md-12" ng-show="vm.favorites.length == 0 && vm.request" style="text-align: center;">
+            <p>No tienes ningun programa en tus favoritos.</p>
+            <p>Empieza a usarlos, con la ayuda de los favoritos no te vas a peder ningun episodio mas de los programas que te gustan.</p>
+            <h5>¿ Para que me sirve tener favoritos a los programas de mi interes?</h5>
+            <p>Cuando encuentres un programa de tu interes agregalo a favorito precionando el boton con un "corazon".
+                <br/> Te enteraras cada vez que sale un episodio nuevo.</p>
+
+        </div>
+</div>
+

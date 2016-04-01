@@ -1,0 +1,162 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html ng-app="tvApp" class="max-height">
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta charset="UTF-8">
+
+
+    <title>Tv Libre</title>
+
+    <base href="/" />
+
+    <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.css' %}"/>
+
+    <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bower_components/angular-blurred-modal/st-blurred-dialog.css' %}"/>
+
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}"/>
+
+    <script src="{% static 'bower_components/jquery/dist/jquery.js' %}"></script>
+    <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.js' %}"></script>
+
+    <script src="{% static 'bower_components/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+</head>
+<body class="max-height qpadding">
+<div class="container-fluid max-height qpadding">
+        <div class="col-md-12 bhoechie-tab-container max-height qpadding">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 bhoechie-tab-menu max-height qpadding">
+                <div class="list-group">
+                    <a ui-sref="programs" class="list-group-item text-center" ng-class="{active: ('programs' | includedByState)}">
+                        <h4 class="glyphicon glyphicon-home"></h4><br/>Inicio
+                    </a>
+                    <a ui-sref="search" class="list-group-item text-center" ng-class="{active: ('search' | includedByState)}">
+                        <h4 class="glyphicon glyphicon-search"></h4><br/>Buscar
+                    </a>
+                    <a ui-sref="nosotros" class="list-group-item text-center" ng-class="{active: ('nosotros' | includedByState)}">
+                        <h4 class="glyphicon glyphicon-info-sign"></h4><br/>¿TvLibre?
+                    </a>
+                    <a href="#" class="list-group-item text-center" ng-class="{active: ('user-favorite' | includedByState)}">
+                        <h4 class="glyphicon glyphicon-heart"></h4><br/>Favoritos
+                    </a>
+                    <a ui-sref="profile" class="list-group-item text-center" ng-class="{active: ('profile' | includedByState)}">
+                        <h4 class="glyphicon glyphicon-user"></h4><br/>Perfil
+                    </a>
+                    <a ui-sref="register" class="list-group-item text-center" ng-class="{active: ('register' | includedByState)}">
+                        <h4 class="glyphicon glyphicon-log-in"></h4><br/>Registrate
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 bhoechie-tab max-height qpadding">
+                <!-- flight section -->
+                <div class="bhoechie-tab-content active max-height qpadding">
+                    <div class="max-height qpadding" ui-view>
+                        <!-- CONTENIDO -->
+                        <div class="container-spinner">
+                            <div class="custom-spinner">
+                                <i class="fa fa-refresh fa-spin fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div st-blurred-dialog-region>
+    <h1>Hello World</h1>
+    <p>The body of your page goes here</p>
+</div>
+<st-blurred-dialog-overlay></st-blurred-dialog-overlay>
+
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="loginmodal-container">
+            <h1>Entra con tu cuenta</h1><br>
+            <form>
+                <input type="text" name="user" placeholder="Usuario">
+                <input type="password" name="pass" placeholder="Contraseña">
+                <input type="submit" name="login" class="login loginmodal-submit" value="Entrar">
+            </form>
+
+            <div class="login-help">
+                <a href="#">Registrate</a> - <a href="#">Olvidaste la contraseña</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- angular resources -->
+<script type="text/javascript" src="{% static 'bower_components/angular/angular.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-sanitize/angular-sanitize.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'bower_components/angular-utils-disqus/dirDisqus.js' %}"></script>
+{% comment %}<script type="text/javascript" src="{% static 'bower_components/angular-resource/angular-resource.js' %}"></script>{% endcomment %}
+<script type="text/javascript" src="{% static 'bower_components/angular-blurred-modal/st-blurred-dialog.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-django-rest-resource/angular-django-rest-resource.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'bower_components/angular-route/angular-route.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angular-ui-router/release/angular-ui-router.min.js' %}"></script>
+<!-- LOAD PROMISE -->
+<script type="text/javascript" src="{% static 'bower_components/angular-busy/dist/angular-busy.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bower_components/angularjs-socialshare/dist/angular-socialshare.min.js' %}"></script>
+
+{% load jsonify %}
+<script>
+
+    angular
+            .module('authentication', [])
+            .factory('Authentication', Authentication);
+
+    Authentication.$inject = [];
+
+    function Authentication(){
+        // Print user data with django
+        var user = {{ user_data|jsonify }};
+
+        var Authentication = {
+            setProfile: setProfile,
+            profile: user.getProfile,
+            unauthenticate: unauthenticate
+        };
+
+        function getProfile(){
+            return user.profile;
+        }
+
+        function setProfile(profile){
+            user.profile = profile;
+        }
+
+        function unauthenticate(){
+            delete user;
+        }
+
+        return Authentication
+    }
+</script>
+
+
+<!-- ###################### TV APP ###################### -->
+<script type="text/javascript" src="{% static 'tvapp/app.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/app.config.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/app.routes.js' %}"></script>
+
+<!-- ###################### TV APP - MODULE LAYOUT ###################### -->
+<script type="text/javascript" src="{% static 'tvapp/layout/layout.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/layout/controllers/layout.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/layout/controllers/sidebar.controller.js' %}"></script>
+<!-- ###################### END TV APP - MODULE LAYOUT ###################### -->
+
+
+<!-- ###################### TV APP - MODULE PROGRAMS ###################### -->
+<script type="text/javascript" src="{% static 'tvapp/program/program.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/program/services/program.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/program/services/episode.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/program/controllers/program.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/program/controllers/search.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'tvapp/program/controllers/episode.dialog.controller.js' %}"></script>
+<!-- ###################### END TV APP - MODULE PROGRAMS###################### -->
+</body>
+</html>

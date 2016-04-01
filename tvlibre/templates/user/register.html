@@ -1,0 +1,25 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% block head_title %}{% trans "Sign Up" %}{% endblock %}
+
+{% block content %}
+    <div class="col-md-6 col-md-offset-3">
+        <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" ><a href="{% url 'account_signup' %}">Registrate para ver</a></li>
+            <li role="presentation" class="active"><a href="{% url 'register_publisher' %}">Registrate para subir</a></li>
+        </ul>
+        <h2 class="text-center">{% trans "Sign Up for publisher" %}</h2>
+        <form class="login" method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button class="primaryAction btn btn-primary btn-block" type="submit">{% trans "Sign In" %}</button>
+            <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        </form>
+    </div>
+{% endblock %}

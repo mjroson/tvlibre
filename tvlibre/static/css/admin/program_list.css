@@ -1,0 +1,10 @@
+
+.item-program-img{
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/** FIXED ALIGN RICH TEXT WIDGET **/
+.mce-tinymce.mce-container.mce-panel{
+    margin-left: 170px;
+}

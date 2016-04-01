@@ -1,0 +1,26 @@
+<style>
+    .btn-remove-favorite{
+        position: absolute;
+        right: 25px;
+    }
+</style>
+<div class="col-md-10 col-md-offset-1 max-height">
+    <h2 class="text-center" style="color: #5F5AA5; font-weight: bold;">Lista de notificaciones</h2>
+    <div ng-show="vm.notifications.length > 0" style="position: relative">
+        <ul>
+            <li ng-repeat="notification in vm.notifications">
+                {{ notification.message }}
+                <a href="/#{{ notification.obj.parent_slug }}">Ver</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content-data col-md-12" ng-show="vm.favorites.length == 0 && vm.request" style="text-align: center;">
+            <p>No tienes ningun programa en tus favoritos.</p>
+            <p>Empieza a usarlos, con la ayuda de los favoritos no te vas a peder ningun episodio mas de los programas que te gustan.</p>
+            <h5>¿ Para que me sirve tener favoritos a los programas de mi interes?</h5>
+            <p>Cuando encuentres un programa de tu interes agregalo a favorito precionando el boton con un "corazon".
+                <br/> Te enteraras cada vez que sale un episodio nuevo.</p>
+
+        </div>
+</div>
+

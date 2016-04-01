@@ -1,0 +1,13 @@
+from embed_video.backends import VideoBackend
+import re
+
+
+class CustomBackend(VideoBackend):
+    re_detect = re.compile(r'http://myvideo\.com/[0-9]+')
+    re_code = re.compile(r'http://myvideo\.com/(?P<code>[0-9]+)')
+
+    allow_https = False
+    pattern_url = '{protocol}://play.myvideo.com/c/{code}/'
+    pattern_thumbnail_url = '{protocol}://thumb.myvideo.com/c/{code}/'
+
+    template_name = 'embed_video/custombackend_embed_code.html'  # added in v0.9

@@ -1,0 +1,108 @@
+<div style="min-height: 100%; max-height: 100%; overflow-x: auto; width: 100%;" ng-controller="EpisodeDialogCtrl as vm">
+    <div class="container" style="background-color: #ffffff;">
+        <div class="social-share">
+            <p style="background-color: #d9d9d9; padding: 3px;"><strong>Compartí</strong></p>
+            <!-- SHARE FACEBOOK -->
+            <a href="#"
+               class="btn btn-facebook"
+               socialshare
+               socialshare-provider="facebook"
+               socialshare-text="{{ vm.episode.title }} en Tv Libre"
+               socialshare-url="{{ vm.url }}"
+               socialshare-media="http://{{ vm.host }}/{{ vm.episode.thumbnail_300x300 }}">
+                <i class="fa fa-facebook" tooltip="'Compartir en Facebook'"
+                   placement="top"></i>
+            </a>
+
+            <!-- SHARE TWITTER -->
+            <a href="#"
+               class="btn btn-twitter"
+               socialshare
+               socialshare-provider="twitter"
+               socialshare-text="{{ vm.episode.title }} en Tv Libre"
+               socialshare-url="{{ vm.url }}"
+               socialshare-hashtags="tvlibre">
+                <i class="fa fa-twitter" tooltip="'Compartir en Twitter'"
+                   placement="top"></i>
+            </a>
+
+            <!-- SHARE GOOGLE+ -->
+            <a href="#"
+               class="btn btn-google-plus"
+               socialshare
+               socialshare-provider="google+"
+               socialshare-text="{{ vm.episode.title }} en Tv Libre"
+               socialshare-url="{{ vm.url }}">
+                <i class="fa fa-google-plus" tooltip="'Compartir en Google+'"
+                   placement="top"></i>
+            </a>
+        </div>
+        <div class="row">
+            <h1 class="text-center">{{ vm.episode.title }}</h1>
+            <div class="col-md-8 col-md-offset-2">
+
+                <div class="embed-responsive embed-responsive-4by3" ng-if="vm.episode.video_url" style="min-height: 300px">
+                   <iframe style="z-index: 10" type="text/html" class="embed-responsive-item" ng-src="{{ vm.trustSrc(vm.episode.video_url) }}"  frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div style="margin-top: 30px; width: 100%;" ng-bind-html="vm.safeHtml(vm.episode.description)"></div>
+
+                <div style="margin-top: 10px" class="container-comment">
+                    <hr/>
+
+
+                    <div>
+                        <h5>Deja tu comentario</h5>
+                        <textarea name="comment" ng-model="vm.new_comment.comment" id="" cols="30" rows="5" class="form-control"></textarea>
+                        <button style="margin-top: 10px; margin-bottom: 10px;" type="button" ng-click="vm.submitComment()" class="btn btn-block btn-success">Enviar comentario</button>
+                    </div>
+                    <hr/>
+                    <h3>Comentarios</h3>
+                    <ul style="list-style: none;">
+                        <li ng-repeat="comment in vm.comments">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <strong>{{ ::comment.user }}</strong>
+                                    <em style="float: right;">{{ ::comment.submit_date }}</em>
+                                </div>
+                                <div class="panel-body">
+                                    <p>{{ ::comment.comment }}</p>
+                                    <span ng-if="comment.children > 0" >Tiene {{ comment.children }} respuestas <span style="font-weight: bold; color: #000088;" ng-click="vm.getChildren(comment)" ng-if="!comment.comments.length">Ver</span></span>
+                                    <button ng-click="vm.reply(comment)" class="btn btn-default pull-right"><i class="fa fa-reply"></i>Responder</button>
+                                    <ul ng-if="comment.comments.length > 0" style="list-style: none; margin-top: 25px;">
+                                        <li ng-repeat="c0_comment in comment.comments">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <strong>{{ ::c0_comment.user }}</strong>
+                                                    <em class="pull-right">{{ ::c0_comment.submit_date }}</em>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <p>{{ ::c0_comment.comment }}</p>
+                                                    <span ng-if="c0_comment.children > 0" ng-click="vm.getChildren(c0_comment)">Tiene {{ c0_comment.children }} respuestas <span style="font-weight: bold; color: #000088;" ng-click="vm.getChildren(c0_comment)" ng-if="!c0_comment.comments">Ver</span></span>
+                                                    <button ng-click="vm.reply(c0_comment)" class="btn btn-default pull-right"><i class="fa fa-reply"></i>Responder</button>
+                                                    <ul ng-if="c0_comment.comments.length > 0" style="list-style: none; margin-top: 25px;">
+                                                        <li ng-repeat="c1_comment in c0_comment.comments">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <strong>{{ ::c1_comment.user }}</strong>
+                                                                    <em class="pull-right">{{ ::c1_comment.submit_date }}</em>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <p>{{ ::c1_comment.comment }}</p>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

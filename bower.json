@@ -1,0 +1,7 @@
+{
+  "name": "TvLibre",
+  "version": "0.0.1",
+  "resolutions": {
+    "angular": "1.4.9"
+  }
+}
