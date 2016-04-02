@@ -66,13 +66,13 @@
 
 ## Capturas de pantalla
     # Pantalla inicial - Explorando programas y episodios
-        ![Alt text](/explorando.jpg?raw=true "TvLibre - Inicio")
+    ![alt tag](https://raw.github.com/mjroson/tvlibre/explorando.jpg)
 
     # Pantalla para buscar episodios
-        ![Alt text](/buscar_episodio.jpg?raw=true "TvLibre - Buscar")
+    ![Alt text](/buscar_episodio.jpg?raw=true "TvLibre - Buscar")
 
     # Pantalla para ver episodio
-        ![Alt text](/ver_episodio.jpg?raw=true "TvLibre - Ver")
+    ![ScreenShot](ver_episodio.jpg?raw=true)
 
 
 
