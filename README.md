@@ -64,6 +64,16 @@
     ------------ index.html
 
 
+## Capturas de pantalla
+    # Pantalla inicial - Explorando programas y episodios
+        ![Alt text](/explorando.jpg?raw=true "TvLibre - Inicio")
+
+    # Pantalla para buscar episodios
+        ![Alt text](/buscar_episodio.jpg?raw=true "TvLibre - Buscar")
+
+    # Pantalla para ver episodio
+        ![Alt text](/ver_episodio.jpg?raw=true "TvLibre - Ver")
+
 
 
 
@@ -77,4 +87,3 @@
         # los canales van a estar compuesto por programas donde se tramiste sucesivamente el ultimo episodio de cada programa
     - Implementar calificacion de episodio:
         # Los episodios van a tener una calificacion, con el fin que el usuario haga el trabajo de filtrar contenido.
-   
