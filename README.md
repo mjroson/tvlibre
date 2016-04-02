@@ -65,3 +65,16 @@
 
 
 
+
+
+## Ideas a implementar
+    - Implementar canales:
+        # Van a tener un numero asignado (igual a los canales de la tv)
+        # Se van a generar automaticamente 1 vez por mes.
+        # Los canales se componen de episodios, 1 vez al mes se definen canales con programas que van a ser trasmitido siempre el ultimo episodio del programa.
+        # Los programas de cada canal se definen por diferentes atributos del programa como: distrito -en caso de noticias-, categorias, etc y por la cantidad de veces que fue emitidio en un canal (siempre intentando que todos los programas esten en los canales)
+        # Los programas van a tener restrinciones (ej: contenido para mayores de 18años), las cuales definen la franja horaria en la que se pueden emitir
+        # los canales van a estar compuesto por programas donde se tramiste sucesivamente el ultimo episodio de cada programa
+    - Implementar calificacion de episodio:
+        # Los episodios van a tener una calificacion, con el fin que el usuario haga el trabajo de filtrar contenido.
+   
