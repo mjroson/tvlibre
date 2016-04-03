@@ -64,6 +64,10 @@
     ------------ index.html
 
 
+## Video 
+[![TvLibre - Presentacion](https://img.youtube.com/vi/l3RiQtiHPQM/0.jpg)](https://www.youtube.com/watch?v=l3RiQtiHPQM)
+
+
 ## Capturas de pantalla
 - Pantalla inicial - Explorando programas y episodios
 ![TvLibre - Inicio](https://github.com/mjroson/tvlibre/blob/master/explorando.jpg?raw=true)
@@ -82,9 +86,10 @@
     - Implementar canales:
         # Van a tener un numero asignado (igual a los canales de la tv)
         # Se van a generar automaticamente 1 vez por mes.
-        # Los canales se componen de episodios, 1 vez al mes se definen canales con programas que van a ser trasmitido siempre el ultimo episodio del programa.
-        # Los programas de cada canal se definen por diferentes atributos del programa como: distrito -en caso de noticias-, categorias, etc y por la cantidad de veces que fue emitidio en un canal (siempre intentando que todos los programas esten en los canales)
+        # Los canales se componen de episodios, 1 vez al mes se definen canales con programas que van a componer el canal por 1 mes.
+        # Para definir los programas en cada canal se tiene en cuenta diferentes atributos del programa como: distrito -en caso de noticias-, categorias, etc, cantidad de veces que fue incluido en un canal (la idea es que todos los programas puedan estar en los canales)
         # Los programas van a tener restrinciones (ej: contenido para mayores de 18años), las cuales definen la franja horaria en la que se pueden emitir
         # los canales van a estar compuesto por programas donde se tramiste sucesivamente el ultimo episodio de cada programa
     - Implementar calificacion de episodio:
         # Los episodios van a tener una calificacion, con el fin que el usuario haga el trabajo de filtrar contenido.
+
